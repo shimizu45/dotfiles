@@ -20,9 +20,12 @@ logfile "/Users/shimizusatsuki/screen/log/screen-%Y%m%d-%n.log"
 
 
 # Show date and screen list
-hardstatus alwayslastline "%{= rw} %H %{= wk}%-Lw%{= bw}%n%f* %t%{= wk}%+Lw %{= wk}%=%{= gk} %y/%m/%d %c "
+hardstatus alwayslastline "%{= kw}%-Lw%{= yk}%n%f* %t%{= kw}%+Lw %{= kw}%=%{= kw} %y/%m/%d %c "
 
+cjkwidth off
 defutf8 on
+defbce on
+term xterm-256color
 defencoding utf8
 encoding utf8 utf8
 
