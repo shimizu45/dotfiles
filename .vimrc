@@ -26,15 +26,15 @@ set list
 set nocompatible
 set showcmd
 set nowrapscan
-"Typescript構文の強調表示が遅くて時々止まるので対策
-set re=0
 set background=dark
+set re=0 " Typescript構文の強調表示が遅くて時々止まるので対策
+set guifont=Fira\ Code\ Retina:h12
+colorscheme ron
 
-au BufRead,BufNewFile *.md set filetype=markdown
-
-"let g:lightline = {'colorscheme': 'default'}
+" tyru/open-browser.vim
+" let g:lightline = {'colorscheme': 'default'}
 let g:lightline = {
-    \ 'colorscheme': 'ayu_dark',
+    \ 'colorscheme': 'wombat',
     \ 'component_function': {
     \   'filename': 'LightlineFilename',
     \ }
@@ -49,33 +49,48 @@ function! LightlineFilename()
     return expand('%')
 endfunction
 
-"Vimで表示させてる特殊文字に色設定"
+" 色設定"
 hi NonText    ctermbg=NONE ctermfg=59 guibg=NONE guifg=NONE
 hi SpecialKey ctermbg=NONE ctermfg=59 guibg=NONE guifg=NONE
-
-"NERDTreeのボーダーを透過
-set fillchars+=vert:\ 
-
 hi SignColumn ctermbg=NONE
 hi Pmenu ctermfg=White ctermbg=237
 hi PmenuSel ctermfg=White ctermbg=233
 hi CocFloating ctermfg=White ctermbg=237
 hi CocErrorFloat ctermbg=Red
 
+" preservim/nerdtree
+" NERDTreeのボーダーを透過
+set fillchars+=vert:\ 
 " NERDTree表示切り替え
 nnoremap <C-t> :NERDTreeToggle<CR>
-
 " 前のタブに移動
 nnoremap gr :tabprevious<CR>
 
-" over.vimの起動
+" osyo-manga/vim-over
+" 文字列をハイライト付きで置換
 nnoremap <silent> ,m :OverCommandLine<CR>%s///g<Left><Left><Left>
-
 " カーソル下の単語をハイライト付きで置換
 nnoremap sub :OverCommandLine<CR>%s/<C-r><C-w>//g<Left><Left>
-
 " コピーした文字列をハイライト付きで置換
 nnoremap subp y:OverCommandLine<CR>%s!<C-r>=substitute(@0, '!', '\\!', 'g')<CR>!!gI<Left><Left><Left>
 
-"文字の後ろに色をつけない"
-"hi Normal ctermbg=NONE
+" plasticboy/vim-markdown
+" 折りたたみの禁止
+let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_auto_insert_bullets = 0
+let g:vim_markdown_new_list_item_indent = 0
+
+" kannokanno/previm
+autocmd BufRead,BufNewFile *.md set filetype=markdown
+" 変数を空にするとopen-browserを使って開こうとしてくれる
+let g:previm_open_cmd = ''
+" ctrl pでプレビュー
+nnoremap <silent> <C-p> :PrevimOpen<CR>
+
+" tyru/open-browser.vim
+" gxでカーソル下の単語を検/URLを開く
+let g:netrw_nogx = 1 " disable netrw's gx mapping.
+nmap gx <Plug>(openbrowser-smart-search)
+vmap gx <Plug>(openbrowser-smart-search)
+
+set noshowmode
