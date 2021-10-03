@@ -2,6 +2,7 @@ call plug#begin()
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'preservim/nerdtree'
 Plug 'itchyny/lightline.vim'
+Plug 'shinchu/lightline-gruvbox.vim'
 Plug 'skanehira/preview-markdown.vim'
 Plug 'plasticboy/vim-markdown'
 Plug 'kannokanno/previm'
@@ -29,12 +30,15 @@ set nowrapscan
 set background=dark
 set re=0 " Typescript構文の強調表示が遅くて時々止まるので対策
 set guifont=Fira\ Code\ Retina:h12
+set cursorline
+set clipboard+=unnamed
+
 colorscheme ron
 
 " tyru/open-browser.vim
 " let g:lightline = {'colorscheme': 'default'}
 let g:lightline = {
-    \ 'colorscheme': 'wombat',
+    \ 'colorscheme': 'gruvbox',
     \ 'component_function': {
     \   'filename': 'LightlineFilename',
     \ }
@@ -49,7 +53,7 @@ function! LightlineFilename()
     return expand('%')
 endfunction
 
-" 色設定"
+" 色設定
 hi NonText    ctermbg=NONE ctermfg=59 guibg=NONE guifg=NONE
 hi SpecialKey ctermbg=NONE ctermfg=59 guibg=NONE guifg=NONE
 hi SignColumn ctermbg=NONE
@@ -57,10 +61,14 @@ hi Pmenu ctermfg=White ctermbg=237
 hi PmenuSel ctermfg=White ctermbg=233
 hi CocFloating ctermfg=White ctermbg=237
 hi CocErrorFloat ctermbg=Red
+" 行の文字色 & 背景色
+hi CursorLine cterm=NONE ctermbg=8
+" 行番号
+hi CursorLineNr cterm=NONE ctermbg=8
 
 " preservim/nerdtree
 " NERDTreeのボーダーを透過
-set fillchars+=vert:\ 
+set fillchars+=vert:│
 " NERDTree表示切り替え
 nnoremap <C-t> :NERDTreeToggle<CR>
 " 前のタブに移動
@@ -94,3 +102,10 @@ nmap gx <Plug>(openbrowser-smart-search)
 vmap gx <Plug>(openbrowser-smart-search)
 
 set noshowmode
+
+"分割時のライン
+hi VertSplit cterm=NONE
+hi StatusLine cterm=NONE
+set fillchars+=vert:│
+
+
