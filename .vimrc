@@ -9,6 +9,11 @@ Plug 'kannokanno/previm'
 Plug 'tyru/open-browser.vim'
 Plug 'tpope/vim-surround'
 Plug 'osyo-manga/vim-over'
+Plug 'maxmellon/vim-jsx-pretty'
+Plug 'ryanoasis/vim-devicons'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'yggdroot/indentline'
+Plug 'jistr/vim-nerdtree-tabs'
 call plug#end()
 
 syntax enable
@@ -34,6 +39,8 @@ set cursorline
 set clipboard+=unnamed
 
 colorscheme ron
+
+let g:vim_jsx_pretty_colorful_config = 1
 
 " tyru/open-browser.vim
 " let g:lightline = {'colorscheme': 'default'}
@@ -69,10 +76,19 @@ hi CursorLineNr cterm=NONE ctermbg=8
 " preservim/nerdtree
 " NERDTreeのボーダーを透過
 set fillchars+=vert:│
+" 隠しファイル表示
+let NERDTreeShowHidden = 1
+" デフォルトでツリーを表示
+let g:nerdtree_tabs_open_on_console_startup=1
+nnoremap <silent><C-e> :NERDTreeFocusToggle<CR>
+" 他のバッファをすべて閉じた時にNERDTreeが開いていたらNERDTreeも一緒に閉じる。
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 " NERDTree表示切り替え
 nnoremap <C-t> :NERDTreeToggle<CR>
 " 前のタブに移動
 nnoremap gr :tabprevious<CR>
+" アイコン表示
+let g:webdevicons_enable_nerdtree = 1
 
 " osyo-manga/vim-over
 " 文字列をハイライト付きで置換
@@ -101,11 +117,22 @@ let g:netrw_nogx = 1 " disable netrw's gx mapping.
 nmap gx <Plug>(openbrowser-smart-search)
 vmap gx <Plug>(openbrowser-smart-search)
 
+" tiagofumo/vim-nerdtree-syntax-highlight
+" Highlight folders using exact match
+let g:NERDTreeHighlightFolders = 1 " enables folder icon highlighting usingexact match
+let g:NERDTreeHighlightFoldersFullName = 1 " highlights the folder name
+" Disable uncommon file extensions highlighting
+let g:NERDTreeLimitedSyntax = 1
+
+" yggdroot/indentline
+let g:indentLine_char = '┆'
+let g:indentLine_concealcursor=0
+let g:indentLine_bgcolor_term = "NONE"
+
 set noshowmode
 
 "分割時のライン
 hi VertSplit cterm=NONE
 hi StatusLine cterm=NONE
 set fillchars+=vert:│
-
 
