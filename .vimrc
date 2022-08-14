@@ -42,22 +42,12 @@ set noshowmode
 
 g:vim_jsx_pretty_colorful_config = 1
 
-# tyru/open-browser.vim
 g:lightline = {
     colorscheme: 'gruvbox',
-    component_function: {
-        filename: 'LightlineFilename',
-        }
-        }
-
-def LightlineFilename()
-    let root = fnamemodify(get(b:, 'git_dir'), ':h')
-    let path = expand('%:p')
-    if path[:len(root)-1] ==# root
-        return path[len(root)+1:]
-    endif
-    return expand('%')
-enddef
+    active: {
+        left: [ [ 'mode', 'paste' ], [ 'readonly', 'absolutepath', 'modified' ] ],
+    }
+}
 
 # 色設定
 hi NonText    ctermbg=NONE ctermfg=59 guibg=NONE guifg=NONE
