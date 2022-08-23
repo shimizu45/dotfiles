@@ -1,14 +1,18 @@
 # Encoding
-defencodig utf-8
+defencoding utf8
+encoding utf8 utf8
 
 # Prefix Key
 escape ^Jj
 
 # set scrollback
-defscrollback 1000000
+defscrollback 10000
 
-# Delete sartt up screen
+# Delete sartup screen
 startup_message off
+
+# Disable visual bell
+vbell off
 
 # Enable Auto detach
 autodetach on
@@ -18,14 +22,17 @@ log on
 deflog on
 logfile "/Users/shimizusatsuki/screen/log/screen-%Y%m%d-%n.log"
 
-
 # Show date and screen list
 hardstatus alwayslastline "%{= kw}%-Lw%{= yk}%n%f* %t%{= kw}%+Lw %{= kw}%=%{= kw} %y/%m/%d %c "
 
 cjkwidth off
 defutf8 on
+
+# Color
 defbce on
 term xterm-256color
-defencoding utf8
-encoding utf8 utf8
 
+
+# Alternate screen buffer, with clear on exit
+# https://terminalguide.namepad.de/mode/p47/
+altscreen on
