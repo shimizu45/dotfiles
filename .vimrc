@@ -123,3 +123,6 @@ hi VertSplit cterm=NONE
 hi StatusLine cterm=NONE
 set fillchars+=vert:│
 
+if filereadable(expand('~/.vimrc.coc'))
+  source ~/.vimrc.coc
+endif
