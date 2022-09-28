@@ -15,6 +15,7 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'yggdroot/indentline'
 Plug 'jistr/vim-nerdtree-tabs'
+Plug 'editorconfig/editorconfig-vim'
 plug#end()
 
 syntax enable
