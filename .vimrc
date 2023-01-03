@@ -93,6 +93,8 @@ nnoremap subp y:OverCommandLine<CR>%s!<C-r>=substitute(@0, '!', '\\!', 'g')<CR>!
 g:vim_markdown_folding_disabled = 1
 g:vim_markdown_auto_insert_bullets = 0
 g:vim_markdown_new_list_item_indent = 0
+g:vim_markdown_conceal = 0
+g:vim_markdown_conceal_code_blocks = 0
 
 # kannokanno/previm
 autocmd BufRead,BufNewFile *.md set filetype=markdown
